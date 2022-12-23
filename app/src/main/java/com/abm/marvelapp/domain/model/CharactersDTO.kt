@@ -3,10 +3,12 @@ package com.abm.marvelapp.domain.model
 import com.google.gson.annotations.SerializedName
 
 data class CharactersDTO(
-    @SerializedName("data") var data: DataMarvel? = null
+    @SerializedName("code") var code: Int? = null,
+    @SerializedName("status") var status:String ? =null,
+    @SerializedName("data") var data: DataMarvelDTO? = null
 )
 
-data class DataMarvel(
+data class DataMarvelDTO(
     @SerializedName("results") var results: List<ResultsMarvel>? = null
 )
 
