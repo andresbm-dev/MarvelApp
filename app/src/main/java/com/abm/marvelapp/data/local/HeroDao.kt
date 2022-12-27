@@ -5,9 +5,9 @@ import androidx.room.*
 @Dao
 interface HeroDao {
     @Query("SELECT * FROM hero_table")
-    suspend fun getAllCountriesDao(): List<HeroEntity>
+    suspend fun getAllHeroesDao(): List<HeroEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCountries(countries: HeroEntity)
+    suspend fun insertHeroes(heroe: HeroEntity)
 
 }

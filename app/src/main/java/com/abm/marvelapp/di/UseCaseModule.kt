@@ -1,5 +1,7 @@
 package com.abm.marvelapp.di
 
+import com.abm.marvelapp.domain.usecase.GetCharacteresLocalUseCase
+import com.abm.marvelapp.domain.usecase.GetCharacteresLocalUseCaseImp
 import com.abm.marvelapp.domain.usecase.GetCharacteresUseCase
 import com.abm.marvelapp.domain.usecase.GetCharacteresUseCaseImp
 import dagger.Binds
@@ -13,8 +15,10 @@ import dagger.hilt.components.SingletonComponent
 abstract class UseCaseModule {
 
     @Binds
-    abstract fun providesCountriesApiUseCase(useCaseImp: GetCharacteresUseCaseImp): GetCharacteresUseCase
+    abstract fun providesHeroesApiUseCase(useCaseImp: GetCharacteresUseCaseImp): GetCharacteresUseCase
 
+    @Binds
+    abstract fun providesHeroesLocaUseCase(useCaseImp: GetCharacteresLocalUseCaseImp): GetCharacteresLocalUseCase
    // @Binds
     //abstract fun providesCountriesLocalUseCase(useCaseImp: GetCountriesLocalUseCaseImp): GetCountriesLocalUseCase
 

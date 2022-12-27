@@ -22,7 +22,7 @@ class CharactersAdapter (
                 Log.d("image", image)
             val imageParse = image.replace("http", "https")
             Glide.with(binding.root).load(imageParse).into(binding.imageHeroe)
-            binding.nameHeroe.text = image
+
 
         }
     }

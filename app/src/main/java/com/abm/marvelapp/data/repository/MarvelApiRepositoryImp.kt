@@ -30,9 +30,10 @@ class MarvelApiRepositoryImp @Inject constructor(
                 }
 
                 override fun onFailure(call: Call<CharactersDTO>, t: Throwable) {
-                    Log.d("api body", t.toString())
-
-                    it.resume(ApiResponseStatus.Error(t.toString()))
+                    if (t.toString().contains("java.net.SocketTimeoutException:"))
+                        it.resume(ApiResponseStatus.Failure(emptyList()))
+                    else
+                     it.resume(ApiResponseStatus.Error(t.toString()))
                 }
             })
     }

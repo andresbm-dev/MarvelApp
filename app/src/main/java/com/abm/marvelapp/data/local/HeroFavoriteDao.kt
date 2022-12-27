@@ -5,12 +5,12 @@ import androidx.room.*
 @Dao
 interface HeroFavoriteDao {
     @Query("SELECT * FROM hero_table WHERE isFavorite == 1 ORDER BY name DESC ")
-    suspend fun getAllCatFav():List<HeroEntity>
+    suspend fun getAllHeroesFav():List<HeroEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAllFavorite(cat:HeroEntity)
+    suspend fun insertAllFavorite(hero:HeroEntity)
 
     @Delete()
-    suspend fun deleteFavorite( cats : List<HeroEntity>)
+    suspend fun deleteFavorite( heroes : List<HeroEntity>)
 
 }

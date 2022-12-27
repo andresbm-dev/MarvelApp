@@ -14,6 +14,7 @@ data class DataMarvelDTO(
 
 data class ResultsMarvel(
     @SerializedName("title") var title: String? = null,
+    @SerializedName("name") var name: String? = null,
     @SerializedName("description") var description: String? = null,
     @SerializedName("thumbnail") var thumbnail: thumbnailMarvel? = null,
     @SerializedName("id") var id: String? = null,
