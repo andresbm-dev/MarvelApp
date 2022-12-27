@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.abm.marvelapp.R
 import com.abm.marvelapp.databinding.ActivityMainBinding
 import com.abm.marvelapp.domain.model.CharactersDTO
+import com.abm.marvelapp.domain.model.ResultsMarvel
 import com.abm.marvelapp.ui.CharactersAdapter
 import com.abm.marvelapp.ui.viewmodel.MarvelViewModelImp
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewModel:MarvelViewModelImp by viewModels()
-    private var character :List<CharactersDTO> = mutableListOf()
+    private var heroes :List<ResultsMarvel> = mutableListOf()
     private var adapterCharacter :CharactersAdapter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +28,8 @@ class MainActivity : AppCompatActivity() {
         viewModel.getCharacters()
         viewModel.charactersLiveData.observe(this){
             it?.let {
-                character = it
-                Log.d("response api", character.toString())
+                heroes = it
+                Log.d("livedata", heroes.toString())
                 setRecyclerView()
             }
         }
@@ -36,8 +37,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setRecyclerView() {
-        adapterCharacter = CharactersAdapter(character) { charact ->
-            onCharacterSelected(charact)
+        adapterCharacter = CharactersAdapter(heroes) { hero ->
+            onCharacterSelected(hero)
         }
         binding.recycler.apply {
             adapter = adapterCharacter
@@ -45,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun onCharacterSelected(charact: CharactersDTO) {
+    private fun onCharacterSelected(charact: ResultsMarvel) {
 
     }
 }

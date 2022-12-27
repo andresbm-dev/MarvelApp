@@ -1,6 +1,6 @@
 package com.abm.marvelapp.di
 
-import com.abm.marvelapp.URL_CHARACTERS
+import com.abm.marvelapp.URL_BASE
 import com.abm.marvelapp.data.remote.ApiServices
 import dagger.Module
 import dagger.Provides
@@ -33,7 +33,7 @@ object NetworkModule {
     @Provides
     fun provideRetrofit (okHttpClient: OkHttpClient) : Retrofit {
         return Retrofit.Builder()
-            .baseUrl(URL_CHARACTERS)
+            .baseUrl(URL_BASE)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()

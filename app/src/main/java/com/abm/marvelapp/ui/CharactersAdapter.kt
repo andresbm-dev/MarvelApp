@@ -1,24 +1,29 @@
 package com.abm.marvelapp.ui
 
+import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.abm.marvelapp.databinding.ItemAdapterCharacterBinding
-import com.abm.marvelapp.domain.model.CharactersDTO
-import com.abm.marvelapp.utils.MarvelApplication.Companion.context
+import com.abm.marvelapp.domain.model.ResultsMarvel
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 
 class CharactersAdapter (
-    private val characters: List<CharactersDTO>,
-    private val callbackDetail:(CharactersDTO)->Unit
+    private val characters: List<ResultsMarvel>,
+    private val callbackDetail:(ResultsMarvel)->Unit
         ) : RecyclerView.Adapter<CharactersAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemAdapterCharacterBinding) :RecyclerView.ViewHolder(binding.root){
-        fun bind(character: CharactersDTO, callbackDetail: (CharactersDTO) -> Unit) {
-           character.data?.results?.forEach {
-               val image = it.thumbnail?.path + it.thumbnail?.extension
-               Glide.with(context).load(image).into(binding.imageHeroe)
-            }
+        @SuppressLint("CheckResult")
+        fun bind(character: ResultsMarvel, callbackDetail: (ResultsMarvel) -> Unit) {
+               val image = character.thumbnail?.path + '.' +character.thumbnail?.extension
+                Log.d("image", image)
+            val imageParse = image.replace("http", "https")
+            Glide.with(binding.root).load(imageParse).into(binding.imageHeroe)
+            binding.nameHeroe.text = image
+
         }
     }
 
